@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <script src="./app.js" type="text/javascript"></script>
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <p>View high scores</p>
+        <p>Time: <span id="timer"></span></p>
+    </header>
+
+    <section id="welcome">
+        <h1> Coding Quiz Challenge </h1>
+        <p>Answer the following mulitple choice questions! You will be timed and incorrect answers will penalize your score!</p>
+        <button id="startQuiz" class="start-quiz">START QUIZ</button>
+    </section>
+
+    <section id="question" class="hidden">        
+        <h3> Question #<span id="questionNumber">N</span> </h3>
+        <p id="questionBody">  Your question will be loaded here!!! </p>
+        <ul id="questionOptions">  </ul>
+    </section>
+
+    <section id="review" class="hidden">
+        <h1> Your Score </h1>
+        <div class="score">
+            <p>Answer the following mulitple choice questions! You will be timed and incorrect answers will penalize your score!</p>
+        </div>
+        <input placeholder="DTW ftw">
+        <button class="save-initials">START QUIZ</button>
+    </section>
+
+
+    <section id="scores" class="hidden">
+        <h1>
+            High Scores
+        </h1>
+        <div>
+            Nobody scores... like highschool
+        </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,38 @@
+
+header {
+    display: flex;
+    justify-content: space-between;
+    border: 1 red;
+}
+
+.code-quiz {
+
+}
+
+
+#questionOptions {
+    border: 1px solid red;
+}
+
+#questionOptions button {
+    background: blue
+}
+
+.hidden {
+    display: none
+}
+
+.quiz-title{
+    display: flex;
+    justify-content: center;
+}
+
+.title-body {
+    display: flex;
+    justify-content: center;
+}
+
+.start-btn {
+    display: flex;
+    justify-content: center;
+}
