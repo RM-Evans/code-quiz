@@ -65,7 +65,7 @@ function onSetupQuiz(){
         }
         questions.push(q)
     }
-    timeleft = 60
+    ntimeleft = 60
     loadNextQuestion()
     showSection('question')
 }
@@ -100,6 +100,7 @@ function onOptionPress(e){
     }
 
     // if we get to here, they must have clicked a button!!!
+
 
 
     const correct = currentQuestion.answer === e.target.value
