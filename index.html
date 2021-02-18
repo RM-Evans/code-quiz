@@ -20,18 +20,17 @@
     </section>
 
     <section id="question" class="hidden">        
-        <h3> Question #<span id="questionNumber">N</span> </h3>
+        <h3> <span id="questionNumber"></span> </h3>
         <p id="questionBody">  Your question will be loaded here!!! </p>
         <ul id="questionOptions">  </ul>
     </section>
 
     <section id="review" class="hidden">
-        <h1> Your Score </h1>
+        <h1> Your Score is <span id="printTimerResult"> print my score here</span></h1>
         <div class="score">
-            <p>Answer the following multiple choice questions! You will be timed and incorrect answers will penalize your score!</p>
         </div>
-        <input placeholder="DTW ftw">
-        <button class="save-initials">START QUIZ</button>
+        <input id="initials" placeholder="Enter Initials Here">
+        <button id="saveScore" class="save-initials">SUBMIT SCORE</button>
     </section>
 
 
@@ -42,6 +41,7 @@
         <div>
             Nobody scores... like highschool
         </div>
+        <ul id="scoresList"></ul>
     </section>
 </body>
 </html>

@@ -5,9 +5,9 @@ header {
     border: 1 red;
 }
 
-.code-quiz {
+/* .code-quiz {
 
-}
+} */
 
 
 #questionOptions {
@@ -15,7 +15,10 @@ header {
 }
 
 #questionOptions button {
-    background: blue
+    background: rgb(135, 235, 230);
+    padding: 5px 5px;
+    border-style: none;
+    margin: 5px 5px;
 }
 
 .hidden {
