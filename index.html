@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
     <script src="./app.js" type="text/javascript"></script>
     <title>Code Quiz</title>
 </head>
+
 <body>
     <header>
         <p>View high scores</p>
@@ -14,34 +16,36 @@
     </header>
 
     <section id="welcome">
-        <h1> Coding Quiz Challenge </h1>
-        <p>Answer the following mulitple choice questions! You will be timed and incorrect answers will penalize your score!</p>
+        <h1>Coding Quiz Challenge</h1>
+        <p>
+            Answer the following mulitple choice questions! You will be timed and
+            incorrect answers will penalize your score!
+        </p>
         <button id="startQuiz" class="start-quiz">START QUIZ</button>
     </section>
 
-    <section id="question" class="hidden">        
-        <h3> <span id="questionNumber"></span> </h3>
-        <p id="questionBody">  Your question will be loaded here!!! </p>
-        <ul id="questionOptions">  </ul>
+    <section id="question" class="hidden">
+        <h3><span id="questionNumber"></span></h3>
+        <p id="questionBody">Your question will be loaded here!!!</p>
+        <ul id="questionOptions"></ul>
     </section>
 
     <section id="review" class="hidden">
-        <h1> Your Score is <span id="printTimerResult"> print my score here</span></h1>
-        <div class="score">
-        </div>
-        <input id="initials" placeholder="Enter Initials Here">
+        <h1>
+            Your Score is <span id="printTimerResult"> print my score here</span>
+        </h1>
+        <div class="score"></div>
+        <input id="initials" placeholder="Enter Initials Here" />
         <button id="saveScore" class="save-initials">SUBMIT SCORE</button>
     </section>
 
-
     <section id="scores" class="hidden">
-        <h1>
-            High Scores
-        </h1>
-        <div>
-            Nobody scores... like highschool
-        </div>
-        <ul id="scoresList"></ul>
+        <h1>High Scores</h1>
+
+        <ol id="scoresList">
+
+        </ol>
     </section>
 </body>
+
 </html>

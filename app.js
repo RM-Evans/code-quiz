@@ -8,12 +8,12 @@ let questionNumber, questionBody, questionOptions, startQuiz, timer, saveScoreBt
 
 // the state of our game
 let currentQuestionNumber = -1 // we have to start BEFORE our first question because we currentQuestionNumber++ when we start
-const questions = [    
+const questions = [
     {
-        question: "When should I use const?" ,
+        question: "When should I use const?",
         options: ["always", "when I dont want the variable to change", "when I want the variable to change"],
         answer: "when I dont want the variable to change"
-    },  
+    },
     {
         question: "when I cant figure out how to debug something I ____.",
         options: ["cry into my keyboard", "persevere and try to find my answer in docs", "all of the above"],
@@ -26,8 +26,8 @@ const questions = [
     },
     {
         question: "what does a for loop do?",
-        options: ["loops through a block of code a number of times", "tElLS yOu WhAt FoR!", "the same as an if statement"], 
-        answer:"loops through a block of code a number of times"
+        options: ["loops through a block of code a number of times", "tElLS yOu WhAt FoR!", "the same as an if statement"],
+        answer: "loops through a block of code a number of times"
     }
 ];
 let timeleft = null
@@ -58,7 +58,7 @@ function onPageReady() {
 
 function onEverySecond() {
     //     // if there's no question, the quiz isn't running
-    if( currentQuestionNumber < 0 || currentQuestionNumber >= questions.length ){
+    if (currentQuestionNumber < 0 || currentQuestionNumber >= questions.length) {
         return
     }
 
@@ -91,7 +91,7 @@ function onSetupQuiz() {
     //     questions.push(q)
     // }
     timeleft = 60
-    
+
     loadNextQuestion()
     showSection('question')
 }
@@ -103,7 +103,7 @@ function loadNextQuestion() {
 
 
     currentQuestionNumber++
-    if( currentQuestionNumber < questions.length ){
+    if (currentQuestionNumber < questions.length) {
 
         // take the "first" question in the array
         // currentQuestion = questions.shift() // don't delete them anymore!
@@ -127,14 +127,14 @@ function loadNextQuestion() {
         // OPTION 2, use the dom to add element objects
 
         // first we have to empty out the <ul>
-        while(questionOptions.hasChildNodes()) { 
-            questionOptions.removeChild( questionOptions.firstChild ) 
+        while (questionOptions.hasChildNodes()) {
+            questionOptions.removeChild(questionOptions.firstChild)
         }
         // now we create "objects" for each <li> and <button>
-        for(let opt of currentQuestion.options ){
+        for (let opt of currentQuestion.options) {
             const button = document.createElement("button")
-            button.value = opt 
-            button.textContent = opt 
+            button.value = opt
+            button.textContent = opt
 
             const li = document.createElement("li")
             li.appendChild(button)
@@ -169,25 +169,65 @@ function onOptionPress(e) {
     }
 }
 
+
+
+
+
 function onSaveScore() {
+    console.log(scores);
     const initials = document.getElementById('initials').value
     //alert(initials)
     showSection("scores")
-    
+
     // create some sort of array
-    scores.push({ 
-        initials: initials, 
-        score: timeleft 
+    scores.push({
+        initials: initials,
+        score: timeleft
     })
+    //format data to add it to local storage as a string
+    // // TODO: save `scores` to local storage
+    let scoreData = JSON.stringify(scores)
+    //console.log(scores, scoreData)
+    localStorage.setItem("scores", scoreData)
 
     // TODO: sort scores
-    // TODO: save `scores` to local storage
-    
+
     // TODO: update DOM
+    //get items from storage by calling the key
+    //json parse?
+
+
+        let scoreLoc = JSON.parse(localStorage.getItem("scores"))
+
+        for(let i = 0; i < scoreLoc.length; i++) {
+            let scoreList = document.querySelector('ol')
+            let scoreItem = document.createElement('li')
+                scoreItem.textContent = scores[]
+                scoreList.appendChild(scoreItem)
+            console.log("scoreLoc.scores")
+            
+        }
+
+    // let scoreLoc = window.localStorage.getItem("scores")
+    // scoreLoc = JSON.parse(scoreLoc) 
+
+    
+    //console.log(scoreLoc["scores"]);
+
+    //create list items under #scoreslist
+
+    //let (scoreListItems) {
+     //   document.createElement
+    //}
+    
+    //console.log(scoreData)
+
+    
+    
 }
 
 function showSection(name) {
-    const  sections = document.getElementsByTagName('section')
+    const sections = document.getElementsByTagName('section')
     for (let section of sections) {
         if (section.id === name) {
             section.className = ''
