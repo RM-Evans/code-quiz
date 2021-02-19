@@ -31,7 +31,7 @@ const questions = [
     }
 ];
 let timeleft = null
-const scores = []
+let scores = []
 
 // TODO: read from local storage; if exists, iterate and add each score
 
@@ -178,17 +178,22 @@ function onSaveScore() {
     const initials = document.getElementById('initials').value
     //alert(initials)
     showSection("scores")
-
+    //debugger;
+console.log(scores)
+scores = JSON.parse(localStorage.getItem("scores"))
     // create some sort of array
     scores.push({
         initials: initials,
         score: timeleft
     })
+    console.log("2", scores)
     //format data to add it to local storage as a string
     // // TODO: save `scores` to local storage
     let scoreData = JSON.stringify(scores)
+    console.log("3", scores)
     //console.log(scores, scoreData)
     localStorage.setItem("scores", scoreData)
+    console.log("4", scores)
 
     // TODO: sort scores
 
@@ -197,33 +202,40 @@ function onSaveScore() {
     //json parse?
 
 
-        let scoreLoc = JSON.parse(localStorage.getItem("scores"))
+    console.log("5", scores)
+    //console.log(scores)
 
-        for(let i = 0; i < scoreLoc.length; i++) {
-            let scoreList = document.querySelector('ol')
-            let scoreItem = document.createElement('li')
-                scoreItem.textContent = scores[]
-                scoreList.appendChild(scoreItem)
-            console.log("scoreLoc.scores")
-            
-        }
+    for (let i = 0; i < scores.length; i++) {
+        console.log(scores[0])
+        const myInit = scores[i].initials
+        const myScore = scores[i].score
+        let scoreList = document.querySelector('ol')
+        let scoreItem = document.createElement('li')
+        scoreItem.textContent = (myInit + " " + myScore)
+        scoreList.appendChild(scoreItem)
+       // console.log("scoreLoc.scores")
+        // console.log(myScore)
+        // console.log(myInit);
+
+    }
+    
 
     // let scoreLoc = window.localStorage.getItem("scores")
     // scoreLoc = JSON.parse(scoreLoc) 
 
-    
+
     //console.log(scoreLoc["scores"]);
 
     //create list items under #scoreslist
 
     //let (scoreListItems) {
-     //   document.createElement
+    //   document.createElement
     //}
-    
+
     //console.log(scoreData)
 
-    
-    
+
+
 }
 
 function showSection(name) {
