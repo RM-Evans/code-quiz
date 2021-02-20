@@ -90,8 +90,6 @@ title {
 
 #questionBody {
     font-size: 28px;
-    text-decoration-line: underline;
-    text-decoration-style: dotted;
     text-decoration-color: rgba(0, 0, 0, 0.5);
     font-weight: bold
 }

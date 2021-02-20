@@ -3,7 +3,15 @@
 window.addEventListener('load', onPageReady);
 
 // elements in the DOM
-let questionNumber, questionBody, questionOptions, startQuiz, timer, saveScoreBtn
+let questionNumber, 
+    questionBody, 
+    questionOptions, 
+    startQuiz, 
+    timer, 
+    saveScoreBtn,
+    yourScoreEl,
+    viewTopScoresEl,
+    scoreListEl
 
 
 // the state of our game
@@ -33,11 +41,53 @@ const questions = [
 let timeleft = null
 
 
-// // TODO: read from local storage; if exists, iterate and add each score
+let highScores // <----- this is the only thing I should use
+loadScoresFromStorage()
+
+
+function loadScoresFromStorage(){
+    highScores = localStorage.getItem("scores")
+    if( highScores ){
+        highScores = JSON.parse(highScores)
+    }
+
+    // just in case local storage gave us something dangerous
+    if( !Array.isArray(highScores) ){
+        highScores = []
+    }
+}
+
+function sortAndSaveScores(){
+    // TODO sort
+    highScores.sort(function(a, b){
+        if( a.score < b.score ){
+            return 1
+        }
+        if( a.score > b.score ){
+            return -1
+        }
+
+        // if they're the same, use the initials
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String#comparing_strings
+        return a.initials.localeCompare(b.initials)
+    })
+
+
+    // save them to the browser locally
+    localStorage.setItem("scores", JSON.stringify(highScores))
+
+    // update the dom section accordingly
+    syncScores()
+}
+
+
+
+
 
 
 // find all our elements on the page, and hook up the buttons we know about
 function onPageReady() {
+    //initialize
     questionNumber = document.getElementById("questionNumber")
     questionBody = document.getElementById("questionBody")
     questionOptions = document.getElementById("questionOptions")
@@ -46,10 +96,15 @@ function onPageReady() {
     saveScoreBtn.addEventListener("click", onSaveScore)
 
     timer = document.getElementById("timer")
-
+    yourScoreEl = document.getElementById("printTimerResult")
 
     startQuiz = document.getElementById("startQuiz")
+    viewTopScoresEl = document.getElementById("viewTopScores")
+    
 
+    viewTopScoresEl.addEventListener('click', onViewTopScores)
+    scoreListEl = document.querySelector('ol')
+    
     startQuiz.addEventListener('click', onSetupQuiz)
     questionOptions.addEventListener('click', onOptionPress)
 
@@ -63,20 +118,29 @@ function onEverySecond() {
     }
 
     if (!timeleft || timeleft < 1) {
-        alert('You lose. Loser')
-        currentQuestion = null
-        showSection('review')
+        alert('You lose.')
+        currentQuestionNumber = -1
+        timeleft = null
+        timer.innerHTML = ''
+        showSection('welcome')
     } else {
         timeleft--;
         timer.innerHTML = timeleft
         //print score in <h1>!!!
-        document.getElementById('printTimerResult').textContent = timer.innerHTML
+        yourScoreEl.textContent = timer.innerHTML
     }
 
 
 };
 
 setInterval(onEverySecond, 1000)
+
+function onViewTopScores(){
+    syncScores()
+    showSection('scores')
+    // don't try to navigate the browser somewhere
+    return false
+}
 
 // setup our array of question
 function onSetupQuiz() {
@@ -176,67 +240,51 @@ function onOptionPress(e) {
 function onSaveScore() {
     const initials = document.getElementById('initials').value
     
-    let storedScores = JSON.parse(localStorage.getItem("scores"))
+    // let storedScores = JSON.parse(localStorage.getItem("scores"))
     //solves is
-    if (!storedScores) {storedScores = []}
+    // if (!storedScores) {storedScores = []}
 
-    showSection("scores")
+    // showSection("scores")
     //get items from storage by calling the key - if "get" not first, "set" will use its place in storage and overwrite it
     //json parse
-    //console.log("1", storedScores)
     //debugger;
     // create some sort of array
-    const newScore = {
-        initials: initials,
-        score: timeleft
-    }
+    // const newScore = {
+    //     initials: initials,
+    //     score: timeleft
+    // }
 
 
-    const updatedScores = [...storedScores, newScore];
+    // const updatedScores = [...storedScores, newScore];
 
-    //console.log("2", storedScores)
     //format data to add it to local storage as a string
     // // TODO: save `scores` to local storage
     //scoreData = JSON.stringify(storedScores)
 
-    //console.log("3", storedScores)
 
-    //console.log(scores, scoreData)
-    localStorage.setItem("scores", JSON.stringify(updatedScores))
+    highScores.push({
+        initials,
+        score: timeleft
+    })
 
-    //console.log("4", storedScores)
+    sortAndSaveScores();
+    showSection("scores")
+}
 
-    // // TODO: sort scores
 
-    // // TODO: update DOM
-    for (let i = 0; i < updatedScores.length; i++) {
-        //isolate my values
-        const myInit = updatedScores[i].initials
-        const myScore = updatedScores[i].score
-        //generate them
-        let scoreList = document.querySelector('ol')
-        let scoreItem = document.createElement('li')
-        scoreItem.textContent = (myInit + " " + myScore)
-        scoreList.appendChild(scoreItem)
-
+function syncScores(){
+    while (scoreListEl.hasChildNodes()) {
+        scoreListEl.removeChild(scoreListEl.firstChild)
     }
-
-    // let scoreLoc = window.localStorage.getItem("scores")
-    // scoreLoc = JSON.parse(scoreLoc) 
-
-
-    //console.log(scoreLoc["scores"]);
-
-    //create list items under #scoreslist
-
-    //let (scoreListItems) {
-    //   document.createElement
-    //}
-
-    //console.log(scoreData)
-
-
-
+    for (let i = 0; i < highScores.length; i++) {
+        //isolate my values
+        const myInit = highScores[i].initials
+        const myScore = highScores[i].score
+        //generate them
+        const scoreItem = document.createElement('li')
+        scoreItem.textContent = (myInit + " " + myScore)
+        scoreListEl.appendChild(scoreItem)
+    }
 }
 
 function showSection(name) {
@@ -248,5 +296,4 @@ function showSection(name) {
             section.className = 'hidden'
         }
     }
-
 }
