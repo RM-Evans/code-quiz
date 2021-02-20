@@ -2,23 +2,57 @@
 header {
     display: flex;
     justify-content: space-between;
-    border: 1 red;
+    font-size: large;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+
+#welcome button:hover,
+#review button:hover {
+    background-color:#f57973;
+}
+
+#welcome button,
+#review button {
+    /* background:linear-gradient(to bottom, #ff4238 5%, #d11100 100%); */
+	background-color:#ff4238;
+	border-radius:13px;
+	display:flex;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:12px;
+	font-weight:bold;
+	padding:6px 46px;
+	text-decoration:none;
+    outline: none;
 }
 
 /* .code-quiz {
-
+    
 } */
 
 
 #questionOptions {
-    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+}
+
+#questionOptions button:hover {
+    background-color: rgb(88, 185, 250);
 }
 
 #questionOptions button {
-    background: rgb(135, 235, 230);
+    display: flex;
+    background: rgba(3, 123, 170, 0.85);
+    color: seashell;
     padding: 5px 5px;
     border-style: none;
-    margin: 5px 5px;
+    margin: 10px 10px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    border-radius: 10px;
 }
 
 .hidden {
@@ -30,12 +64,67 @@ header {
     justify-content: center;
 }
 
-.title-body {
+title {
     display: flex;
     justify-content: center;
 }
 
-.start-btn {
+#welcome h1,
+#welcome p,
+#questionBody
+
+{
+    display: flex;
+    justify-content: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#welcome h1 {
+    font-size: 30px;
+    
+}
+#welcome p 
+{
+    font-weight:700
+}
+
+#questionBody {
+    font-size: 28px;
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: rgba(0, 0, 0, 0.5);
+    font-weight: bold
+}
+
+
+#review h1,
+#scores h1  {
+    font-family: 'Courier New', Courier, monospace;
+}
+#review h1 span {
+    color: red;
+}
+
+
+
+
+.btn-box
+{
     display: flex;
     justify-content: center;
 }
+
+
+#scorePrompt {
+    display: flex;
+    justify-content: center
+}
+
+#initials,
+#initialsEntry {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    }
+
+

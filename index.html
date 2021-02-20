@@ -21,7 +21,10 @@
             Answer the following mulitple choice questions! You will be timed and
             incorrect answers will penalize your score!
         </p>
-        <button id="startQuiz" class="start-quiz">START QUIZ</button>
+        <div class="btn-box">
+
+            <button id="startQuiz" class="start-quiz">START QUIZ</button>
+        </div>
     </section>
 
     <section id="question" class="hidden">
@@ -31,12 +34,22 @@
     </section>
 
     <section id="review" class="hidden">
-        <h1>
-            Your Score is <span id="printTimerResult"> print my score here</span>
-        </h1>
-        <div class="score"></div>
-        <input id="initials" placeholder="Enter Initials Here" />
-        <button id="saveScore" class="save-initials">SUBMIT SCORE</button>
+        <div id="scorePrompt">
+            <h1>
+                Your Score is <span id="printTimerResult"> print my score here</span>
+            </h1>
+        </div>
+        <div id="initialsEntry">
+
+            <div class="score"></div>
+            <input id="initials" placeholder="Enter Initials Here" />
+        </div>
+        <div class="btn-box">
+            <button id="saveScore" class="save-initials">
+                SUBMIT SCORE
+            </button>
+
+        </div>
     </section>
 
     <section id="scores" class="hidden">
