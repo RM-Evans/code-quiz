@@ -31,7 +31,7 @@ const questions = [
     }
 ];
 let timeleft = null
-//let scores = []
+
 
 // // TODO: read from local storage; if exists, iterate and add each score
 
@@ -176,34 +176,43 @@ function onOptionPress(e) {
 function onSaveScore() {
     const initials = document.getElementById('initials').value
     
+    let storedScores = JSON.parse(localStorage.getItem("scores"))
+    //solves is
+    if (!storedScores) {storedScores = []}
+
     showSection("scores")
     //get items from storage by calling the key - if "get" not first, "set" will use its place in storage and overwrite it
     //json parse
-    console.log("1", scores)
-    const storedScores = JSON.parse(localStorage.getItem("scores"))
+    //console.log("1", storedScores)
     //debugger;
     // create some sort of array
-    storedScores.push({
+    const newScore = {
         initials: initials,
         score: timeleft
-    })
-    console.log("2", scores)
+    }
+
+
+    const updatedScores = [...storedScores, newScore];
+
+    //console.log("2", storedScores)
     //format data to add it to local storage as a string
     // // TODO: save `scores` to local storage
-    let scoreData = JSON.stringify(storedScores)
-    console.log("3", scores)
+    //scoreData = JSON.stringify(storedScores)
+
+    //console.log("3", storedScores)
 
     //console.log(scores, scoreData)
-    localStorage.setItem("scores", scoreData)
-    console.log("4", scores)
+    localStorage.setItem("scores", JSON.stringify(updatedScores))
+
+    //console.log("4", storedScores)
 
     // // TODO: sort scores
 
     // // TODO: update DOM
-    for (let i = 0; i < storedScores.length; i++) {
+    for (let i = 0; i < updatedScores.length; i++) {
         //isolate my values
-        const myInit = storedScores[i].initials
-        const myScore = storedScores[i].score
+        const myInit = updatedScores[i].initials
+        const myScore = updatedScores[i].score
         //generate them
         let scoreList = document.querySelector('ol')
         let scoreItem = document.createElement('li')
