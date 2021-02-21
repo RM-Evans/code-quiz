@@ -7,6 +7,8 @@ header {
     font-weight: bold;
 }
 
+/* buttons */
+
 #welcome button:hover,
 #review button:hover {
     background-color:#f57973;
@@ -27,11 +29,6 @@ header {
 	text-decoration:none;
     outline: none;
 }
-
-/* .code-quiz {
-    
-} */
-
 
 #questionOptions {
     display: flex;
@@ -56,7 +53,7 @@ header {
 }
 
 .hidden {
-    display: none
+    display: none !important
 }
 
 .quiz-title{
@@ -69,6 +66,7 @@ title {
     justify-content: center;
 }
 
+/* welcome page */
 #welcome h1,
 #welcome p,
 #questionBody
@@ -78,7 +76,6 @@ title {
     justify-content: center;
     font-family: 'Courier New', Courier, monospace;
 }
-
 #welcome h1 {
     font-size: 30px;
     
@@ -94,9 +91,9 @@ title {
     font-weight: bold
 }
 
+/* display timer result with style */
 
-#review h1,
-#review h1 span {
+#printTimerResult {
     color: red;
 }
 
@@ -130,20 +127,28 @@ title {
 
 #scores h1  {
     font-family: 'Courier New', Courier, monospace;
+    font-size: 35px;
+    display: flex;
+    justify-content: center;
 }
 
 #scoresList {
+    list-style-position: inside;
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     font-size: 20px;
-    letter-spacing: 3px;
-    
-    
+    letter-spacing: px;
+    display: flex;
+    flex-direction: column;
+    min-width: min-content;
+    align-self: center;
 }
 
+#scoresList li {
+    margin: 5px 0 5px 0;
+}
 
-
-#scoresList li:nth-child(odd) {
+#scoresList li:nth-child(odd){
     background-color:  rgb(88, 185, 250);
     padding-top: 3px;
 }
