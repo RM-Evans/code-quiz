@@ -96,9 +96,6 @@ title {
 
 
 #review h1,
-#scores h1  {
-    font-family: 'Courier New', Courier, monospace;
-}
 #review h1 span {
     color: red;
 }
@@ -123,6 +120,31 @@ title {
     display: flex;
     justify-content: center;
     margin-bottom: 10px;
-    }
+}
+/* highscore page */
+#scores {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
 
+#scores h1  {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#scoresList {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: 3px;
+    
+    
+}
+
+
+
+#scoresList li:nth-child(odd) {
+    background-color:  rgb(88, 185, 250);
+    padding-top: 3px;
+}
 
