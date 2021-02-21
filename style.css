@@ -50,6 +50,7 @@ header {
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     border-radius: 10px;
+    outline: none;
 }
 
 .hidden {
